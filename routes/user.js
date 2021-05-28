@@ -124,7 +124,7 @@ route.post("/create", upload.none(), async (req, res, next) => {
     const mailOptions = {
       from: process.env.EMAIL_ADDRESS,
       to: req.body.email,
-      subject: "text node mail",
+      subject: "Starting 인증 메일입니다.",
       text: "mail!!!",
       html: `<a href=http://bting-f.s3-website.ap-northeast-2.amazonaws.com/certification/${req.body.email}>인증링크<a>`,
     };
@@ -221,6 +221,7 @@ route.post("/login", async (req, res, next) => {
     res.cookie("x_auth", reToken, {
       httpOnly: true,
       secure: true,
+      domain: "starting.link",
     });
     console.log(reToken);
 
@@ -377,8 +378,7 @@ route.get("/authentication", async (req, res, next) => {
 
 route.get("/logout", async (req, res, next) => {
   try {
-    console.log("dddddd");
-    res.clearCookie("x_auth");
+    res.clearCookie("x_auth", { domain: "starting.link" });
     return res.status(200).json("로그아웃");
   } catch (error) {
     next(error);

@@ -10,7 +10,6 @@ const UserAuthenticator = async (req, res, next) => {
     console.log(x_auth);
     if (authorization) {
       const rawToken = authorization.split("Bearer ");
-      console.log(rawToken);
       const jm = new JWTManager();
       const token = await jm.verify(rawToken[1]);
       const reToken = await jm.verify(x_auth);
