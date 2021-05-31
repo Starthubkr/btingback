@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       mailCert: {
         type: DataTypes.INTEGER,
-        defaultValue: 0,
+        defaultValue: 1,
       },
     },
     {
